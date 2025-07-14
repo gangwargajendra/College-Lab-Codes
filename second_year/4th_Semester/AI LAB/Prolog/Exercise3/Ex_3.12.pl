@@ -1,0 +1,14 @@
+helper(N, N).
+
+helper(I, N) :-
+    (  N mod I =:= 0 ->
+          false, !
+    ;
+          I1 is I + 1,
+          helper(I1, N)
+    ).
+
+
+prime(N) :-
+    helper(2, N).
+

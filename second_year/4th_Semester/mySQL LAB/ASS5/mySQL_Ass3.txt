@@ -1,0 +1,79 @@
+1.
+select s.sname, count(s.snum) as student_count
+from student as s, enrolled as e, class as c
+where s.snum = e.snum and e.cname = c.name and c.name = "Database Systems" and s.snum not in 
+	(select e.snum
+	from class as c, enrolled as e
+	where e.cname = c.name and c.name = "Operating System Design")
+group by s.sname; 
+
+2.
+select e.cname, avg(s.age) as avg_age
+from student as s, enrolled as e
+where e.snum = s.snum
+group by e.cname
+having count(e.snum) >= 2;
+
+3.
+select fid
+from class as c
+group by fid 
+having count(name) >= 2;
+
+4.
+select snum
+from enrolled
+group by snum
+having count(cname) >= 2;
+
+5.
+select snum, sname, major, standing, age
+from student
+order by age asc;
+
+6.
+select snum, sname
+from student
+where major in ('Electrical Engineering', 'Mechanical Engineering', 'Computer Engineering', 'Civil Engineering');
+
+7.
+select major, count(snum) as student_count
+from student
+where major in ('Electrical Engineering', 'Mechanical Engineering', 'Computer Engineering', 'Civil Engineering')
+group by major;
+
+8.
+select distinct f.fid, f.fname
+from faculty as f, class as c
+where f.fid = c.fid and c.name in ("Data Structures", "Operating System Design");
+
+9.
+select distinct f.fid, f.fname
+from faculty as f, class as c
+where f.fid = c.fid and f.deptid = 20;
+
+10.
+select s.snum, s.sname
+from student as s
+where s.snum not in 
+	(select e.snum
+	from enrolled as e
+	);
+
+11.
+select s.sname, s.age
+from student as s
+where substring_index(s.sname, ' ', -1 ) like 'H%' AND length(s.sname) >= 3;
+
+
+12.
+select s.standing, min(s.age) 
+from student as s
+where age >= 18 
+group by s.standing
+having count(s.snum) >= 2;
+
+
+
+
+

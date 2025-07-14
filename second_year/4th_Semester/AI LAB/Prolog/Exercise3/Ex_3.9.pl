@@ -1,0 +1,22 @@
+born(jan, date(20,3,1977)).
+born(jeroen, date(2,2,1992)).
+born(joris, date(17,3,1995)).
+born(jelle, date(1,1,2004)).
+born(jesus, date(24,12,0)).
+born(joop, date(30,4,1989)).
+born(jannecke, date(17,3,1993)).
+born(jaap, date(16,11,1995)).
+
+year(Year, Person) :-
+    born(Person, date(_, _, Year)).
+
+before(date(Day1, Month1, Year1), date(Day2, Month2, Year2)) :-
+    (   Year1 < Year2
+      ; Year1 =:= Year2, Month1 < Month2
+      ; Year1 =:= Year2, Month1 =:= Month2, Day1 < Day2
+    ).
+
+older(Person1, Person2) :-
+    born(Person1, date(D1, M1, Y1)),
+    born(Person2, date(D2, M2, Y2)),
+    before(date(D1, M1, Y1), date(D2, M2, Y2)).

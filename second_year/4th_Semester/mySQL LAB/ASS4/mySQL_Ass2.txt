@@ -1,0 +1,57 @@
+1. 
+select distinct s.sname
+from student as s, enrolled as e, class as c, faculty as f
+where s.snum = e.snum and e.cname = c.name and c.fid = f.fid and f.fname = 'John Williams';
+
+
+
+
+2. 
+select distinct s.sname
+from student as s, enrolled as e, class as c, faculty as f
+where s.snum = e.snum and e.cname = c.name and c.fid = f.fid and f.fname = 'Ivana Teach' and s.standing = 'SR';
+
+
+
+
+3. 
+select distinct c.name
+from student as s, enrolled as e, class as c
+where s.snum = e.snum and e.cname = c.name and s.sname = 'Lisa Walker';
+
+
+
+4. 
+select distinct s.sname
+from student as s, enrolled as e
+where s.snum = e.snum;
+
+
+
+5.
+select s.standing, avg(s.age) as avg_age
+from student as s
+group by s.standing;
+
+
+
+6.
+select s.standing, avg(s.age) as avg_age
+from student as s
+where s.standing != 'JR'
+group by s.standing;
+
+
+
+7. 
+select f.fname, count(c.name) as total_classes
+from faculty as f, class as c
+where f.fid = c.fid
+group by f.fname;
+
+
+
+
+
+
+

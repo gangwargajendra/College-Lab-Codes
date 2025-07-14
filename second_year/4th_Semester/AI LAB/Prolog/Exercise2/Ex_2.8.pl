@@ -1,0 +1,13 @@
+/* base case */
+power([], [[]]).
+
+/* P = powerSet, PT = Power Set Of the tail */
+power([Head|Tail], P) :-
+    power(Tail, PT),
+    add_Head(Head, PT, [], WithHead),
+    append(WithHead, PT, P).
+
+add_Head(_, [], Acc, Acc).
+
+add_Head(Head, [Set|RestSet], Acc, WithHead) :-
+    add_Head(Head, RestSet, [[Head|Set]|Acc], WithHead).
